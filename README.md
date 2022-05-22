@@ -102,7 +102,7 @@ export default TimeirClock;
 ```
 ###  Clock  :
 ```JSX
-import TheoraClock from "theora-timeir-clock-react";
+import TheoraClock from "theora-react-timeir-clock";
 
 function Clock() {
 
