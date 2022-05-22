@@ -1,10 +1,11 @@
-import React, {  useEffect, useRef, useState } from "react";
+import React, {  useEffect, useRef, useState ,memo } from "react";
 import Clock from "theora-timeir-clock";
+const currentDate = new Date();
 function TimeirClock({ date: userDate =null , options={}, amPm = false, ...props }) {
   const canvasRef = useRef(null);
   const canvas = <canvas ref={canvasRef} width={200} height={200} />;
 
-  const [date, setDate] = useState(userDate??new Date());
+  const [date, setDate] = useState(userDate??currentDate);
   const [realSec, realMin, realHour] = [
     date.getSeconds(),
     date.getMinutes(),
@@ -45,4 +46,4 @@ function TimeirClock({ date: userDate =null , options={}, amPm = false, ...props
   );
 }
 
-export default TimeirClock;
+export default memo(TimeirClock);

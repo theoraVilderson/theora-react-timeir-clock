@@ -17,6 +17,8 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const currentDate = new Date();
+
 function TimeirClock({
   date: userDate = null,
   options = {},
@@ -29,7 +31,7 @@ function TimeirClock({
     width: 200,
     height: 200
   });
-  const [date, setDate] = (0, _react.useState)(userDate !== null && userDate !== void 0 ? userDate : new Date());
+  const [date, setDate] = (0, _react.useState)(userDate !== null && userDate !== void 0 ? userDate : currentDate);
   const [realSec, realMin, realHour] = [date.getSeconds(), date.getMinutes(), date.getHours()];
   const [sec, min, hour] = [("0" + realSec).slice(-2), ("0" + realMin).slice(-2), ("0" + realHour % (amPm ? 12 : 24)).slice(-2)];
   (0, _react.useEffect)(() => {
@@ -41,7 +43,7 @@ function TimeirClock({
       element: canvasRef.current,
       onTick,
       time: userDate,
-      //you can use optional Date
+      /*you can use optional Date*/
       options
     });
     clock.startClock();
@@ -67,5 +69,6 @@ function TimeirClock({
   });
 }
 
-var _default = TimeirClock;
+var _default = /*#__PURE__*/(0, _react.memo)(TimeirClock);
+
 exports.default = _default;
