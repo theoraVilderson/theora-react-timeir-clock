@@ -1,5 +1,5 @@
 {
-  "name": "theora-timeir-clock-react",
+  "name": "theora-react-timeir-clock",
   "version": "1.0.0",
   "main":"./dist/index.js",
   "dependencies": {
