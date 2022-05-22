@@ -1,6 +1,6 @@
 import React, {  useEffect, useRef, useState } from "react";
-import Clock from "./timeirClockCore";
-function TimeirClock({ date: userDate =null , amPm = false, ...props }) {
+import Clock from "theora-timeir-clock";
+function TimeirClock({ date: userDate =null , options={}, amPm = false, ...props }) {
   const canvasRef = useRef(null);
   const canvas = <canvas ref={canvasRef} width={200} height={200} />;
 
@@ -25,15 +25,16 @@ function TimeirClock({ date: userDate =null , amPm = false, ...props }) {
       element: canvasRef.current,
       onTick,
       time: userDate, //you can use optional Date
+      options,
     });
     clock.startClock();
     return () => {
       clock.stopClock();
       clock = null;
     };
-  }, [userDate]);
+  }, [userDate,options]);
   return (
-    <div {...props} style={{ width: "200px", fontFamily: "sans-serif" }}>
+    <div  style={{ width: "200px", fontFamily: "sans-serif" }} {...props}>
       {canvas}
       <div>
         <h2 style={{ textAlign: "center" }}>

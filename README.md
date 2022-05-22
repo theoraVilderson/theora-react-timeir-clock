@@ -47,11 +47,11 @@
 - **titleFont**: "***sans***-serif",
 - **hourFont**: "***monospace***",
 
-### Create Clock :
-```
+###  Clock React Component Inside :
+```JSX
 import React, {  useEffect, useRef, useState } from "react";
-import Clock from "./timeirClockCore";
-function TimeirClock({ date: userDate =null , amPm = false, ...props }) {
+import Clock from "theora-timeir-clock";
+function TimeirClock({ date: userDate =null , options={}, amPm = false, ...props }) {
   const canvasRef = useRef(null);
   const canvas = <canvas ref={canvasRef} width={200} height={200} />;
 
@@ -76,15 +76,16 @@ function TimeirClock({ date: userDate =null , amPm = false, ...props }) {
       element: canvasRef.current,
       onTick,
       time: userDate, //you can use optional Date
+      options,
     });
     clock.startClock();
     return () => {
       clock.stopClock();
       clock = null;
     };
-  }, [userDate]);
+  }, [userDate,options]);
   return (
-    <div {...props} style={{ width: "200px", fontFamily: "sans-serif" }}>
+    <div  style={{ width: "200px", fontFamily: "sans-serif" }} {...props}>
       {canvas}
       <div>
         <h2 style={{ textAlign: "center" }}>
@@ -97,41 +98,29 @@ function TimeirClock({ date: userDate =null , amPm = false, ...props }) {
 
 export default TimeirClock;
 
-```
-
-### Create Clock Object :
-```   
-	let clock = new Clock({
-      element: canvasRef.current, // the element should be canvas
-      onTick:(date)=>{ /* do something*/ },
-      onTock:(date)=>{ /* do something*/ },
-      time: userDate, //you can use optional Date
-      options:{}
-    });
-    // run it once and the element should be valid !
-    // otherwise will be Error shown up
 
 ```
-### Start/Stop Clock :
-```
-let clock = new Clock({
-      element: canvasRef.current, // the element should be canvas
-      onTick:(date)=>{ /* do something*/ },
-      onTock:(date)=>{ /* do something*/ },
-      time: userDate, //you can use optional Date
-      options:{}
-    });
-    clock.startClock(); // start
-    clock.stopClock(); // stop
+###  Clock  :
+```JSX
+import TheoraClock from "theora-timeir-clock-react";
 
-    remember the useEffect 
-    return function and stop the Clock!
+function Clock() {
+
+
+  return (
+
+      <TheoraClock date={new Date()} amPm options={{title:"my Clock Title"}} />
+    )
+
+}
+
+
+export default Clock;
 
 ```
 
-### NOTE ! USE TimerClock.jsx   :
-- **for using amPm**
-- **or just use timeirClockCore**
+
+
 - **the options for sizing uses Scale Algorithm**
 - **YourPixlSize * CurrentSurface / defaultSurface**
 - **use your imagine size Handler to just work it out! :)**
