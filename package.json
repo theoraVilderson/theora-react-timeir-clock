@@ -3,25 +3,18 @@
   "version": "1.0.0",
   "main":"./dist/index.js",
   "dependencies": {
-
-    "theora-timeir-clock": "^1.0.0",
-
+    "theora-timeir-clock": "^1.0.0"
   },
   "devDependencies" : {
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "peerDependencies": {
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "scripts": {
-    "startInnerDev": "react-scripts start",
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+    "startInnerDev": "react-scripts start"
+  }
+
 }
